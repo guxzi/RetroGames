@@ -1,0 +1,34 @@
+# ---------- Segredos ----------
+# Connection string e senhas ficam só no .env (nunca versionado).
+.env
+.env.local
+*.env
+!.env.example
+
+# ---------- .NET ----------
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+TestResults/
+*.trx
+.vs/
+
+# ---------- Node / Vite ----------
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---------- Editores e sistema ----------
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
