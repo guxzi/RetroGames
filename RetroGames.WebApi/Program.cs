@@ -1,4 +1,5 @@
 using RetroGames.WebApi.Configuration;
+using RetroGames.WebApi.Middlewares;
 
 // Carrega o .env da raiz do repositório (procurando nas pastas acima) ANTES de criar o
 // builder: assim ConnectionStrings__Default vira a configuração ConnectionStrings:Default.
@@ -19,10 +20,15 @@ builder.Services.AddRepositorios(connectionString);
 builder.Services.AddServicosDeNegocio();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
 // Pipeline: a sequência de etapas por onde toda requisição passa.
+// O tratamento de exceções vem primeiro, para pegar o erro de qualquer etapa seguinte.
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
